@@ -3,51 +3,87 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kata Hari Ini 😆</title>
+  <title>Web Bucin Interaktif 💘</title>
   <style>
     body {
-      font-family: "Comic Sans MS", "Poppins", sans-serif;
+      font-family: "Poppins", sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      flex-direction: column;
+      min-height: 100vh;
       margin: 0;
-      background: linear-gradient(135deg, #ffb6c1, #87cefa);
-      color: #333;
+      background: radial-gradient(circle at top left, #ff9aa2, #ffb6b9, #ffd3b6);
+      color: #fff;
       text-align: center;
       overflow: hidden;
     }
-    .card {
-      background: rgba(255,255,255,0.9);
-      padding: 2rem;
-      border-radius: 25px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-      animation: muncul 1.5s ease;
-      width: 90%;
-      max-width: 500px;
-    }
     h1 {
-      font-size: 1.8rem;
-      color: #ff4081;
-      margin-bottom: 1rem;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease;
     }
     p {
-      font-size: 1.4rem;
-      color: #444;
+      font-size: 1.3rem;
+      margin: 1rem 0;
+    }
+    input {
+      padding: 0.8rem 1rem;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      width: 220px;
+      text-align: center;
+      font-size: 1rem;
+      color: #ff4b5c;
+    }
+    button {
+      background: #fff;
+      color: #ff4b5c;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      margin-top: 1rem;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: #ff4b5c;
+      color: #fff;
+      transform: scale(1.05);
     }
     .emoji {
       font-size: 3rem;
-      animation: goyang 2s infinite;
+      margin-bottom: 1rem;
+      animation: goyang 3s infinite;
     }
-    @keyframes muncul {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+    #hasil {
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 1rem 1.5rem;
+      margin-top: 1.5rem;
+      font-size: 1.4rem;
+      color: #fff;
+      display: none;
+      animation: fadeInUp 1s ease;
     }
     @keyframes goyang {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(5deg); }
-      50% { transform: rotate(-5deg); }
-      75% { transform: rotate(5deg); }
+      0%,100% {transform: rotate(0deg);}
+      25% {transform: rotate(4deg);}
+      50% {transform: rotate(-4deg);}
+      75% {transform: rotate(4deg);}
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
     }
     footer {
       position: absolute;
@@ -58,31 +94,45 @@
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="emoji" id="emoji">🤣</div>
-    <h1>Kata Hari Ini</h1>
-    <p id="kata"></p>
-  </div>
-  <footer>© 2025 Dibuat oleh Christian 😎</footer>
+  <div class="emoji">💞</div>
+  <h1>Web Bucin Interaktif 😍</h1>
+  <p>Tulis namamu dulu, biar aku kasih kata cinta spesial 💘</p>
+  <input type="text" id="nama" placeholder="Masukkan namamu...">
+  <button onclick="tampilkanKata()">Tampilkan Kata 💌</button>
+
+  <div id="hasil"></div>
+
+  <footer>© 2025 Dibuat dengan cinta oleh Christian 💕</footer>
 
   <script>
-    const kataList = [
-      "Kalau hidupmu berat, mungkin karena kamu keren banget 💪",
-      "Kerja boleh malas, asal gajinya rajin masuk 😎",
-      "Hari ini jangan baper, nanti malam aja 😜",
-      "Tidur itu bukan malas, tapi investasi mimpi 😴",
-      "Kalau gagal, coba lagi... atau tidur dulu 😅",
-      "Senyum! Biar masalah bingung mau datang atau enggak 😁",
-      "Kalau dunia tidak tersenyum padamu, senyumin balik aja 😆",
-      "Makan dulu biar kuat menghadapi realita 🍜"
+    const kataBucin = [
+      "kamu tuh kayak oksigen, nggak kelihatan tapi penting banget 💞",
+      "setiap detak jantungku bilang satu hal: {nama}, aku cinta kamu 💓",
+      "kalau senyum kamu dijual, aku pasti bangkrut beli tiap hari 😍",
+      "kamu tuh kayak kopi, bikin candu dan susah dilupakan ☕",
+      "aku nggak jago matematika, tapi aku tahu: aku + kamu = kita 💘",
+      "{nama}, aku tuh bukan bucin... aku cuma cinta dengan profesional 😆",
+      "mikirin kamu tuh kayak sinyal, kadang hilang tapi selalu nyambung lagi 📶",
+      "kalau cinta itu dosa, aku udah masuk neraka cinta kamu 🔥",
+      "{nama}, kamu bukan lampu, tapi selalu bikin hatiku nyala 💡",
+      "aku rela jadi awan, biar bisa jagain kamu dari atas 💫"
     ];
-    const emojiList = ["🤣", "😜", "😎", "😅", "😂", "🤪", "😴", "😁"];
 
-    const randomKata = kataList[Math.floor(Math.random() * kataList.length)];
-    const randomEmoji = emojiList[Math.floor(Math.random() * emojiList.length)];
+    function tampilkanKata() {
+      const nama = document.getElementById('nama').value.trim();
+      const hasil = document.getElementById('hasil');
 
-    document.getElementById("kata").textContent = randomKata;
-    document.getElementById("emoji").textContent = randomEmoji;
+      if (!nama) {
+        hasil.style.display = "block";
+        hasil.innerHTML = "Masukin dulu namanya dong 😜";
+        return;
+      }
+
+      const randomKata = kataBucin[Math.floor(Math.random() * kataBucin.length)];
+      const kalimat = randomKata.replace("{nama}", nama);
+      hasil.style.display = "block";
+      hasil.innerHTML = `${nama}, ${kalimat}`;
+    }
   </script>
 </body>
 </html>
