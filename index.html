@@ -3,48 +3,86 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kata Hari Ini</title>
+  <title>Kata Hari Ini 😆</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: "Comic Sans MS", "Poppins", sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      height: 100vh;
       margin: 0;
-      background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+      background: linear-gradient(135deg, #ffb6c1, #87cefa);
+      color: #333;
+      text-align: center;
+      overflow: hidden;
     }
     .card {
-      background: white;
+      background: rgba(255,255,255,0.9);
       padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      text-align: center;
+      border-radius: 25px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      animation: muncul 1.5s ease;
+      width: 90%;
+      max-width: 500px;
     }
     h1 {
-      color: #333;
+      font-size: 1.8rem;
+      color: #ff4081;
+      margin-bottom: 1rem;
     }
     p {
-      font-size: 1.3rem;
-      color: #555;
+      font-size: 1.4rem;
+      color: #444;
+    }
+    .emoji {
+      font-size: 3rem;
+      animation: goyang 2s infinite;
+    }
+    @keyframes muncul {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes goyang {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(-5deg); }
+      75% { transform: rotate(5deg); }
+    }
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9rem;
+      color: #fff;
     }
   </style>
 </head>
 <body>
   <div class="card">
+    <div class="emoji" id="emoji">🤣</div>
     <h1>Kata Hari Ini</h1>
     <p id="kata"></p>
   </div>
+  <footer>© 2025 Dibuat oleh Christian 😎</footer>
 
   <script>
     const kataList = [
-      "Tetap semangat meski hari ini berat 🌞",
-      "Langkah kecil hari ini bisa jadi lompatan besar esok!",
-      "Jangan menyerah, kamu lebih kuat dari yang kamu kira 💪",
-      "Setiap hari adalah kesempatan baru 🌱",
-      "Tersenyumlah, karena kamu luar biasa 😄"
+      "Kalau hidupmu berat, mungkin karena kamu keren banget 💪",
+      "Kerja boleh malas, asal gajinya rajin masuk 😎",
+      "Hari ini jangan baper, nanti malam aja 😜",
+      "Tidur itu bukan malas, tapi investasi mimpi 😴",
+      "Kalau gagal, coba lagi... atau tidur dulu 😅",
+      "Senyum! Biar masalah bingung mau datang atau enggak 😁",
+      "Kalau dunia tidak tersenyum padamu, senyumin balik aja 😆",
+      "Makan dulu biar kuat menghadapi realita 🍜"
     ];
-    document.getElementById('kata').textContent = kataList[Math.floor(Math.random() * kataList.length)];
+    const emojiList = ["🤣", "😜", "😎", "😅", "😂", "🤪", "😴", "😁"];
+
+    const randomKata = kataList[Math.floor(Math.random() * kataList.length)];
+    const randomEmoji = emojiList[Math.floor(Math.random() * emojiList.length)];
+
+    document.getElementById("kata").textContent = randomKata;
+    document.getElementById("emoji").textContent = randomEmoji;
   </script>
 </body>
 </html>
