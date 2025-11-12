@@ -14,7 +14,7 @@ button{margin-top:1.5rem;padding:0.8rem 1.5rem;border:none;border-radius:15px;ba
 button:hover{transform:scale(1.05);background:#ffe6ec;}
 .love{position:absolute;color:rgba(255,255,255,0.7);font-size:2rem;animation:float 5s infinite;}
 @keyframes float{0%{transform:translateY(0) rotate(0deg);opacity:1;}100%{transform:translateY(-800px) rotate(360deg);opacity:0;}}
-iframe{display:none;}
+audio{display:none;}
 </style>
 </head>
 <body>
@@ -25,8 +25,10 @@ iframe{display:none;}
 <button onclick="balik()">💖 Balas Cintaku</button>
 </div>
 
-<!-- Musik YouTube autoplay + muted -->
-<iframe id="musik" src="https://www.youtube.com/embed/l4EMDq33qvY?autoplay=1&loop=1&playlist=l4EMDq33qvY&mute=1" frameborder="0" allow="autoplay"></iframe>
+<!-- Musik bebas hak cipta, autoplay -->
+<audio id="musik" autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9f17853cb4.mp3?filename=romantic-piano-melody-ambient-112191.mp3" type="audio/mp3">
+</audio>
 
 <script>
 // Ambil nama dari query param
@@ -56,10 +58,10 @@ for(let i=0;i<10;i++){
 // Tombol kembali
 function balik(){ window.close(); }
 
-// Unmute otomatis setelah tab terbuka (beberapa browser memerlukan ini)
-window.addEventListener("load",()=>{
+// Pastikan musik autoplay (beberapa browser memerlukan klik)
+window.addEventListener("click",()=>{
   const musik=document.getElementById("musik");
-  musik.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}','*');
+  if(musik.paused) musik.play();
 });
 </script>
 </body>
