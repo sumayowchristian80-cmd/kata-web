@@ -1,138 +1,203 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Web Bucin Interaktif 💘</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💞 Web Bucin Interaktif 💞</title>
   <style>
     body {
-      font-family: "Poppins", sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      min-height: 100vh;
       margin: 0;
-      background: radial-gradient(circle at top left, #ff9aa2, #ffb6b9, #ffd3b6);
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       color: #fff;
       text-align: center;
       overflow: hidden;
     }
+
     h1 {
       font-size: 2rem;
-      margin-bottom: 0.5rem;
-      color: #fff;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-      animation: fadeIn 2s ease;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
     }
-    p {
-      font-size: 1.3rem;
-      margin: 1rem 0;
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      animation: fadeIn 1.5s ease;
     }
+
     input {
-      padding: 0.8rem 1rem;
+      width: 80%;
+      padding: 0.8rem;
       border: none;
-      border-radius: 20px;
-      outline: none;
-      width: 220px;
+      border-radius: 10px;
+      margin-top: 1rem;
       text-align: center;
       font-size: 1rem;
-      color: #ff4b5c;
+      outline: none;
     }
+
     button {
-      background: #fff;
-      color: #ff4b5c;
-      border: none;
-      padding: 0.7rem 1.5rem;
       margin-top: 1rem;
-      border-radius: 20px;
-      font-size: 1rem;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 15px;
+      background: #fff;
+      color: #ff4081;
       font-weight: bold;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: 0.3s;
     }
+
     button:hover {
-      background: #ff4b5c;
-      color: #fff;
       transform: scale(1.05);
+      background: #ffe6ec;
     }
-    .emoji {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      animation: goyang 3s infinite;
-    }
-    #hasil {
-      background: rgba(255,255,255,0.2);
-      border-radius: 20px;
-      padding: 1rem 1.5rem;
-      margin-top: 1.5rem;
-      font-size: 1.4rem;
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
       color: #fff;
-      display: none;
-      animation: fadeInUp 1s ease;
     }
-    @keyframes goyang {
-      0%,100% {transform: rotate(0deg);}
-      25% {transform: rotate(4deg);}
-      50% {transform: rotate(-4deg);}
-      75% {transform: rotate(4deg);}
-    }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-    @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(30px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
+
     footer {
       position: absolute;
       bottom: 10px;
       font-size: 0.9rem;
       color: #fff;
     }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .love {
+      position: absolute;
+      color: rgba(255,255,255,0.7);
+      font-size: 2rem;
+      animation: float 5s infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-800px) rotate(360deg); opacity: 0; }
+    }
+
+    audio {
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <div class="emoji">💞</div>
-  <h1>Web Bucin Interaktif 😍</h1>
-  <p>Tulis namamu dulu, biar aku kasih kata cinta spesial 💘</p>
-  <input type="text" id="nama" placeholder="Masukkan namamu...">
-  <button onclick="tampilkanKata()">Tampilkan Kata 💌</button>
+  <audio id="musik" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9f17853cb4.mp3?filename=romantic-piano-melody-ambient-112191.mp3" type="audio/mp3">
+  </audio>
 
-  <div id="hasil"></div>
+  <div id="page1" class="card">
+    <h1>💖 Web Bucin Interaktif 💖</h1>
+    <p id="intro">Masukkan namamu dulu, biar aku bisa bucin sama kamu 😘</p>
+    <input type="text" id="nama" placeholder="Masukkan nama kamu..." />
+    <button onclick="tampilkanKata()">Lihat Kata Bucin 💌</button>
+    <p id="kataBucin"></p>
+    <button id="btnSurat" class="hidden" onclick="keSurat()">Lihat Surat Cinta 💖</button>
+  </div>
 
-  <footer>© 2025 Dibuat dengan cinta oleh Christian 💕</footer>
+  <div id="page2" class="card hidden">
+    <h1>💌 Surat Cinta Untukmu 💌</h1>
+    <p id="suratTeks"></p>
+    <button onclick="kembali()">Kembali ke Awal 💞</button>
+  </div>
+
+  <footer>© 2025 Dibuat oleh Christian Bucin 😆</footer>
 
   <script>
-    const kataBucin = [
-      "kamu tuh kayak oksigen, nggak kelihatan tapi penting banget 💞",
-      "setiap detak jantungku bilang satu hal: {nama}, aku cinta kamu 💓",
-      "kalau senyum kamu dijual, aku pasti bangkrut beli tiap hari 😍",
-      "kamu tuh kayak kopi, bikin candu dan susah dilupakan ☕",
-      "aku nggak jago matematika, tapi aku tahu: aku + kamu = kita 💘",
-      "{nama}, aku tuh bukan bucin... aku cuma cinta dengan profesional 😆",
-      "mikirin kamu tuh kayak sinyal, kadang hilang tapi selalu nyambung lagi 📶",
-      "kalau cinta itu dosa, aku udah masuk neraka cinta kamu 🔥",
-      "{nama}, kamu bukan lampu, tapi selalu bikin hatiku nyala 💡",
-      "aku rela jadi awan, biar bisa jagain kamu dari atas 💫"
+    const kataBucinList = [
+      "Hai <b>{nama}</b> 💕, tau gak? Kamu tuh kayak kopi — bikin candu tiap hari ☕.",
+      "Kalau aku jadi matahari ☀️, aku bakal terbit cuma buat lihat senyummu, <b>{nama}</b> 😍.",
+      "<b>{nama}</b>... kamu itu bukan GPS, tapi hatiku selalu menuju ke kamu ❤️.",
+      "Kalau cinta itu dosa, aku rela masuk neraka asal bareng kamu, <b>{nama}</b> 🔥.",
+      "Aku gak butuh alarm, cukup denger nama kamu aja udah bikin aku bangun, <b>{nama}</b> 😚.",
+      "Dunia boleh berputar 🌍, tapi hatiku cuma muter di orbitnya <b>{nama}</b> 💫.",
+      "<b>{nama}</b>, kamu kayak sinyal WiFi — kalau jauh aku lemah 😭📶.",
+      "Aku sih gapapa disakitin, asal pelakunya <b>{nama}</b> 😅💔."
+    ];
+
+    const suratList = [
+      "Hai <b>{nama}</b> 💖, tiap detik aku cuma mikirin kamu. Rasanya dunia lebih indah kalau kamu senyum. Jangan jauh-jauh ya, aku takut kangen 😳.",
+      "Untuk <b>{nama}</b>... kalau cinta itu hujan, aku rela kehujanan selamanya asal sama kamu ☔💕.",
+      "Aku cuma mau bilang... <b>{nama}</b>, kamu alasan kenapa aku senyum tanpa alasan 😚.",
+      "Dear <b>{nama}</b>, kalau aku bisa, aku mau kirim satu bintang buat tiap kali aku mikirin kamu... tapi kayaknya langit bakal habis duluan 🌟."
     ];
 
     function tampilkanKata() {
-      const nama = document.getElementById('nama').value.trim();
-      const hasil = document.getElementById('hasil');
+      const nama = document.getElementById("nama").value.trim();
+      const hasil = document.getElementById("kataBucin");
+      const intro = document.getElementById("intro");
+      const btnSurat = document.getElementById("btnSurat");
 
-      if (!nama) {
-        hasil.style.display = "block";
-        hasil.innerHTML = "Masukin dulu namanya dong 😜";
+      if (nama === "") {
+        hasil.innerHTML = "Masukkan nama dulu dong 😜";
         return;
       }
 
-      const randomKata = kataBucin[Math.floor(Math.random() * kataBucin.length)];
-      const kalimat = randomKata.replace("{nama}", nama);
-      hasil.style.display = "block";
-      hasil.innerHTML = `${nama}, ${kalimat}`;
+      intro.style.display = "none";
+      const random = kataBucinList[Math.floor(Math.random() * kataBucinList.length)];
+      hasil.innerHTML = random.replaceAll("{nama}", nama);
+      btnSurat.classList.remove("hidden");
+      hasil.style.animation = "fadeUp 1.2s ease";
     }
+
+    function keSurat() {
+      document.getElementById("page1").classList.add("hidden");
+      document.getElementById("page2").classList.remove("hidden");
+
+      const nama = document.getElementById("nama").value.trim();
+      const surat = suratList[Math.floor(Math.random() * suratList.length)];
+      document.getElementById("suratTeks").innerHTML = surat.replaceAll("{nama}", nama);
+
+      // efek love ❤️
+      for (let i = 0; i < 10; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("love");
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.animationDuration = 3 + Math.random() * 5 + "s";
+        heart.innerHTML = "❤️";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 8000);
+      }
+    }
+
+    function kembali() {
+      document.getElementById("page2").classList.add("hidden");
+      document.getElementById("page1").classList.remove("hidden");
+    }
+
+    // memastikan musik play otomatis (diblokir browser kadang)
+    window.addEventListener('click', () => {
+      const musik = document.getElementById('musik');
+      if (musik.paused) musik.play();
+    });
   </script>
 </body>
 </html>
