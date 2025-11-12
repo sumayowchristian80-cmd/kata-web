@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kata Hari Ini</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      font-size: 1.3rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Kata Hari Ini</h1>
+    <p id="kata"></p>
+  </div>
+
+  <script>
+    const kataList = [
+      "Tetap semangat meski hari ini berat 🌞",
+      "Langkah kecil hari ini bisa jadi lompatan besar esok!",
+      "Jangan menyerah, kamu lebih kuat dari yang kamu kira 💪",
+      "Setiap hari adalah kesempatan baru 🌱",
+      "Tersenyumlah, karena kamu luar biasa 😄"
+    ];
+    document.getElementById('kata').textContent = kataList[Math.floor(Math.random() * kataList.length)];
+  </script>
+</body>
+</html>
