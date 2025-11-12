@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>💌 Surat Cinta 💌</title>
 <style>
-body { margin:0;padding:0;font-family:Poppins,sans-serif;
-  background: linear-gradient(135deg,#ffb3c1,#ffccd5); height:100vh;
-  display:flex; justify-content:center; align-items:center; flex-direction:column; color:#fff; text-align:center; overflow:hidden;}
-.card { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius:25px; padding:2rem; width:90%; max-width:500px; box-shadow:0 8px 25px rgba(0,0,0,0.2);}
-h1 { font-size:2rem; margin-bottom:1rem; text-shadow:0 2px 10px rgba(255,255,255,0.3);}
-p { font-size:1.3rem; line-height:1.6; margin-top:1rem;}
-button { margin-top:1.5rem; padding:0.8rem 1.5rem; border:none; border-radius:15px; background:#fff; color:#ff4081; font-weight:bold; cursor:pointer; transition:0.3s;}
-button:hover{transform:scale(1.05); background:#ffe6ec;}
-.love {position:absolute;color:rgba(255,255,255,0.7); font-size:2rem; animation: float 5s infinite;}
-@keyframes float {0% {transform: translateY(0) rotate(0deg); opacity:1;}100%{transform: translateY(-800px) rotate(360deg);opacity:0;}}
+body{margin:0;padding:0;font-family:Poppins,sans-serif;background:linear-gradient(135deg,#ffb3c1,#ffccd5);
+height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;color:#fff;text-align:center;overflow:hidden;}
+.card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:25px;padding:2rem;width:90%;max-width:500px;box-shadow:0 8px 25px rgba(0,0,0,0.2);}
+h1{font-size:2rem;margin-bottom:1rem;text-shadow:0 2px 10px rgba(255,255,255,0.3);}
+p{font-size:1.3rem;line-height:1.6;margin-top:1rem;}
+button{margin-top:1.5rem;padding:0.8rem 1.5rem;border:none;border-radius:15px;background:#fff;color:#ff4081;font-weight:bold;cursor:pointer;transition:0.3s;}
+button:hover{transform:scale(1.05);background:#ffe6ec;}
+.love{position:absolute;color:rgba(255,255,255,0.7);font-size:2rem;animation:float 5s infinite;}
+@keyframes float{0%{transform:translateY(0) rotate(0deg);opacity:1;}100%{transform:translateY(-800px) rotate(360deg);opacity:0;}}
+iframe{display:none;}
 </style>
 </head>
 <body>
@@ -25,8 +25,8 @@ button:hover{transform:scale(1.05); background:#ffe6ec;}
 <button onclick="balik()">💖 Balas Cintaku</button>
 </div>
 
-<!-- Musik YouTube autoplay -->
-<iframe id="musik" width="0" height="0" src="https://www.youtube.com/embed/l4EMDq33qvY?autoplay=1&loop=1&playlist=l4EMDq33qvY" frameborder="0" allow="autoplay"></iframe>
+<!-- Musik YouTube autoplay + muted -->
+<iframe id="musik" src="https://www.youtube.com/embed/l4EMDq33qvY?autoplay=1&loop=1&playlist=l4EMDq33qvY&mute=1" frameborder="0" allow="autoplay"></iframe>
 
 <script>
 // Ambil nama dari query param
@@ -40,7 +40,6 @@ const suratList=[
 `Aku cuma mau bilang... <b>${nama}</b>, kamu adalah alasan aku tersenyum tanpa alasan 😚.`,
 `Dear <b>${nama}</b>, jika aku bisa, aku mau mengirim satu bintang untuk setiap kali aku memikirkanmu 🌟.`
 ];
-
 document.getElementById("surat").innerHTML=suratList[Math.floor(Math.random()*suratList.length)];
 
 // Efek hati melayang
@@ -56,7 +55,12 @@ for(let i=0;i<10;i++){
 
 // Tombol kembali
 function balik(){ window.close(); }
-</script>
 
+// Unmute otomatis setelah tab terbuka (beberapa browser memerlukan ini)
+window.addEventListener("load",()=>{
+  const musik=document.getElementById("musik");
+  musik.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}','*');
+});
+</script>
 </body>
 </html>
